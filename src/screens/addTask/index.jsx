@@ -3,19 +3,31 @@ import React from 'react';
 import {Formik} from 'formik';
 import {Input, Button, Radio, RadioGroup} from '@ui-kitten/components';
 import CustomDatePicker from '../../components/uı/customDatePicker';
+import {taskSchema} from '../../utils/validation';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddTask = () => {
+  const saveTask = async values => {
+    try {
+      await AsyncStorage.setItem('task', JSON.stringify(values));
+      console.log('basarili');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Formik
         initialValues={{
-          title: '',
-          description: '',
+          title: 'yazilim',
+          description: 'ders calis',
           startDate: null,
           endDate: null,
           category: null,
         }}
-        onSubmit={values => Alert.alert(JSON.stringify(values, null, 2))}>
+        validationSchema={taskSchema}
+        onSubmit={values => saveTask(values)}>
         {({handleChange, handleSubmit, values, setFieldValue, errors}) => (
           <View>
             <Input
@@ -25,6 +37,8 @@ const AddTask = () => {
               label={'Title'}
               placeholder=""
               onChangeText={handleChange('title')}
+              status={errors.title ? 'danger' : 'basic'}
+              caption={errors.title}
             />
 
             <Input
@@ -34,6 +48,8 @@ const AddTask = () => {
               label={'Description'}
               placeholder=""
               onChangeText={handleChange('description')}
+              status={errors.description ? 'danger' : 'basic'}
+              caption={errors.description}
             />
 
             <CustomDatePicker
@@ -42,6 +58,8 @@ const AddTask = () => {
               date={values.startDate}
               label={'Start Date'}
               onSelectDate={date => setFieldValue('startDate', date)}
+              status={errors.startDate ? 'danger' : 'basic'}
+              caption={errors.startDate}
             />
 
             <CustomDatePicker
@@ -50,6 +68,8 @@ const AddTask = () => {
               date={values.endDate}
               label={'End Date'}
               onSelectDate={date => setFieldValue('endDate', date)}
+              status={errors.endDate ? 'danger' : 'basic'}
+              caption={errors.endDate}
             />
 
             <RadioGroup
