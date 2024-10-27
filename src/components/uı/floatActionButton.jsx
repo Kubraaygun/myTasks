@@ -1,14 +1,27 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const FloatActionButton = () => {
+import {Add} from 'iconsax-react-native';
+
+const FloatActionButton = props => {
   return (
-    <View>
-      <Text>floatActionButton</Text>
-    </View>
+    <TouchableOpacity {...props} style={styles.continer}>
+      <Add size="32" color="#fff" />
+    </TouchableOpacity>
   );
 };
 
 export default FloatActionButton;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  continer: {
+    backgroundColor: '#2CCCE4',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 70,
+    height: 70,
+    borderRadius: 10000,
+    position: 'absolute',
+    right: 30,
+    bottom: 30,
+  },
+});
