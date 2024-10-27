@@ -20,8 +20,8 @@ const AddTask = () => {
     <View style={styles.container}>
       <Formik
         initialValues={{
-          title: 'yazilim',
-          description: 'ders calis',
+          title: 'yazilim react',
+          description: 'yazilim react native ders calisilacak',
           startDate: null,
           endDate: null,
           category: null,
