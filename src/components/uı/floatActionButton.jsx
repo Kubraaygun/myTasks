@@ -1,5 +1,4 @@
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-
 import {Add} from 'iconsax-react-native';
 
 const FloatActionButton = props => {
