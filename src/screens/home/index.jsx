@@ -4,6 +4,7 @@ import {ADDTASKS} from '../../utils/routes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
 import TaskCard from '../../components/home/taskCard';
+import HeaderComponent from '../../components/home/headerComponent';
 
 const Home = ({navigation}) => {
   const [refreshing, setRefreshing] = useState(false);
@@ -35,6 +36,7 @@ const Home = ({navigation}) => {
     <View style={styles.container}>
       <FlatList
         data={tasks}
+        ListHeaderComponent={<HeaderComponent />}
         renderItem={({item}) => <TaskCard item={item} />}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
