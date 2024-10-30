@@ -5,12 +5,16 @@ import {Input, Button, Radio, RadioGroup} from '@ui-kitten/components';
 import CustomDatePicker from '../../components/uı/customDatePicker';
 import {taskSchema} from '../../utils/validation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {status} from '../../utils/constant';
+import uuid from 'react-native-uuid';
 
 const AddTask = () => {
   const saveTask = async values => {
     try {
-      await AsyncStorage.setItem('task', JSON.stringify(values));
-      console.log('basarili');
+      const savedTasks = await AsyncStorage.getItem('tasks');
+      let myTask = savedTasks ? JSON.parse(savedTasks) : [];
+      myTask.push(values);
+      await AsyncStorage.setItem('tasks', JSON.stringify(myTask));
     } catch (error) {
       console.log(error);
     }
@@ -20,11 +24,13 @@ const AddTask = () => {
     <View style={styles.container}>
       <Formik
         initialValues={{
+          id: uuid.v4(),
           title: 'yazilim react',
           description: 'yazilim react native ders calisilacak',
           startDate: null,
           endDate: null,
           category: null,
+          status: status.ONGOING,
         }}
         validationSchema={taskSchema}
         onSubmit={values => saveTask(values)}>

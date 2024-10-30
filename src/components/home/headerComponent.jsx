@@ -74,7 +74,7 @@ const HeaderComponent = () => {
             </Text>
           </View>
 
-          <View>{<ArrowCircleRight2 size="32" color={AppColors.WHITE} />}</View>
+          <View>{<ArrowCircleRight2 size="24" color={AppColors.WHITE} />}</View>
         </View>
       </Pressable>
     );
@@ -87,6 +87,18 @@ const HeaderComponent = () => {
         data={tasks}
         renderItem={({item}) => <Task item={item} />}
       />
+
+      <View>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: '500',
+            margin: 10,
+            marginHorizontal: 20,
+          }}>
+          All Task
+        </Text>
+      </View>
     </View>
   );
 };
