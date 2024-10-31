@@ -23,18 +23,23 @@ const Home = ({navigation}) => {
       let ongoingCount = 0;
       let cancelCount = 0;
       for (const task of JSON.parse(savedTask)) {
-        if (task.status === '1') {
+        if (task.status === 1) {
           ongoingCount++;
         }
-        if (task.status === '2') {
+        if (task.status === 2) {
           pendingCount++;
         }
-        if (task.status === '3') {
+        if (task.status === 3) {
           complatedCount++;
         }
-        if (task.status === '4') {
+        if (task.status === 4) {
           cancelCount++;
         }
+
+        setOngoing(ongoingCount);
+        setPending(pendingCount);
+        setComplated(complatedCount);
+        setCancel(cancelCount);
       }
     } catch (error) {
       console.log(error);
@@ -55,7 +60,14 @@ const Home = ({navigation}) => {
     <View style={styles.container}>
       <FlatList
         data={tasks}
-        ListHeaderComponent={<HeaderComponent />}
+        ListHeaderComponent={
+          <HeaderComponent
+            ongoing={ongoing}
+            pending={pending}
+            complated={complated}
+            cancel={cancel}
+          />
+        }
         renderItem={({item}) => <TaskCard item={item} />}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

@@ -1,36 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import moment from 'moment';
+import {useNavigation} from '@react-navigation/native';
+import {TASKDETAIL} from '../../utils/routes';
 
 const TaskCard = ({item}) => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <Text style={{fontSize: 16, fontWeight: '600', color: 'black'}}>
-        {item.title}
-      </Text>
-      <Text style={{fontSize: 14, fontWeight: '300', color: 'gray'}}>
-        {item.description}
-      </Text>
-
-      <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 1}}>
-          <Text style={{fontSize: 14, fontWeight: '600', color: 'black'}}>
-            Start Date
-          </Text>
-          <Text style={{fontSize: 14, fontWeight: '300', color: 'gray'}}>
-            {item.startDate}
-          </Text>
-        </View>
-
-        <View style={{flex: 1}}>
-          <Text style={{fontSize: 14, fontWeight: '600', color: 'black'}}>
-            End Date
-          </Text>
-          <Text style={{fontSize: 14, fontWeight: '300', color: 'gray'}}>
-            {item.endDate}
-          </Text>
-        </View>
-      </View>
-    </View>
+    <Pressable
+      onPress={navigation.navigate(TASKDETAIL, {item: item})}></Pressable>
   );
 };
 
