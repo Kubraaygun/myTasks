@@ -1,4 +1,4 @@
-## Kutuphaneler
+## Kütüphaneler
 
 -- npm install @react-navigation/native
 -- npm install react-native-screens
