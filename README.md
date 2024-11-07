@@ -36,3 +36,7 @@ The objective of this project is to develop a task management app using React Na
 -- npm install yup --save
 -- npm i @ui-kitten/components @eva-design/eva react-native-svg
 -- npm i iconsax-react-native react-native-svg
+
+## ScreenShot
+
+![](./src/assests/mytasks.gif)
