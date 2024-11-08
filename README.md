@@ -40,5 +40,3 @@ The objective of this project is to develop a task management app using React Na
 ## ScreenShot
 
 ![](./src/assests/mytasks.gif)
-
-adad
